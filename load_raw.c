@@ -52,32 +52,16 @@ void write_line(uint8_t *bp, uint64_t *dp, unsigned row) {
     mask = ~0xFFFF;
 
     for (unsigned col = 0; col < 2048; col++) {
-        if (opt_pixel) {
-            val = num_pixel;            /* For getting a pixel value */
-            if (!opt_overlay)
-                val <<= 16;
-        } /*else if (num_tpat) {
-            val = calc_tpat(num_tpat, col, row); <-- For checking test pattern
-        }*/ else {
+        /* copying data from the source */
 
-            /* copying data from the source */
+        val = bp[0];
+        val = (val << 8) | bp[1];
+        val = (val << 8) | bp[2];
+        val = (val << 8) | bp[3];
+        val = (val << 8) | bp[4];
+        val = (val << 8) | bp[5];
+        val = (val << 16);
 
-            if (opt_raw) {
-                val = bp[0];
-                val = (val << 8) | bp[1];
-                val = (val << 8) | bp[2];
-                val = (val << 8) | bp[3];
-                val = (val << 8) | bp[4];
-                val = (val << 8) | bp[5];
-                val = (val << 16);
-            } else {
-                val = (bp[0] << 4LL);
-                val = (val << 12) | (bp[1] << 4LL);
-                val = (val << 12) | (bp[1] << 4LL);
-                val = (val << 12) | (bp[2] << 4LL);
-                val = (val << 16);
-            }
-        }
         *dp = (*dp & ~mask) | (val & mask);
         dp++;
         bp += inc;
