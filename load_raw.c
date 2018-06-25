@@ -176,7 +176,8 @@ int main(int argc, char **argv) {
 
         uint32_t dp_base = map_addr + (buf_base[0] - map_base);
         uint64_t *dp = (uint64_t *) (dp_base + row * 16384);  /* dp stands for data pointer */
-
+        printf("%u\n", dp);
+        printf("%u\n", bp);
         write_line(bp, dp, row);
     }
 
