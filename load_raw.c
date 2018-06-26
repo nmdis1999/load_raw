@@ -27,7 +27,6 @@ static bool opt_raw = false;
 static bool opt_pixel = false;
 static bool opt_overlay = false;
 
-static uint64_t num_pixel = 0;
 static uint32_t num_tpat = 0;
 
 static uint32_t buf_base[4] = {-1, -1, -1, -1};
@@ -39,7 +38,6 @@ uint64_t calc_tpat(unsigned num, unsigned col, unsigned row) {
     }
 }*/
 
-//
 
 static
 void write_line(uint8_t *bp, uint64_t *dp, unsigned row) {
@@ -66,6 +64,7 @@ void write_line(uint8_t *bp, uint64_t *dp, unsigned row) {
         dp++;
         bp += inc;
     }
+    printf("%u\n", dp);
 }
 
 int main(int argc, char **argv) {
@@ -176,8 +175,7 @@ int main(int argc, char **argv) {
 
         uint32_t dp_base = map_addr + (buf_base[0] - map_base);
         uint64_t *dp = (uint64_t *) (dp_base + row * 16384);  /* dp stands for data pointer */
-        printf("%u\n", dp);
-        printf("%u\n", bp);
+
         write_line(bp, dp, row);
     }
 
