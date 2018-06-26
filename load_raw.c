@@ -29,8 +29,6 @@ static bool opt_overlay = false;
 
 static uint32_t num_tpat = 0;
 
-static uint32_t buf_base[4] = {-1, -1, -1, -1};
-
 /*static inline
 uint64_t calc_tpat(unsigned num, unsigned col, unsigned row) {
     switch(num) {
