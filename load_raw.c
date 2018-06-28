@@ -61,8 +61,8 @@ void write_line(uint8_t *bp, uint64_t *dp, unsigned row) {
 }
 
 int main(int argc, char **argv) {
-    extern int optind;
-    extern char *optarg;
+    extern int optind; /* set by getopt to the index of the next element of the argv array to be processed */
+    extern char *optarg; /* set by getopt to point at the value of the option argument */
     int c, err_flag = 0;
 
 #define    OPTIONS "hr:B:S"
