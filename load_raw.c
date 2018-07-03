@@ -12,16 +12,13 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <math.h>
 
 static char *cmd_name = NULL;
-
 
 static uint32_t map_base = 0x18000000;
 static uint32_t map_size = 0x08000000;
 
 static uint32_t map_addr = 0x00000000;
-
 
 static char *dev_mem = "/dev/mem";
 
@@ -51,12 +48,10 @@ void write_line(uint8_t *bp, uint64_t *dp, unsigned row) {
         val = (val << 8) | bp[5];
         val = (val << 16);         /* After 6 bytes, shift the input by 16 skipping over the overlay */
 
-        *
-                dp = (*dp & ~mask) | (val & mask); /* Data is masked out and then modified into memory */
+        *dp = (*dp & ~mask) | (val & mask); /* Data is masked out and then modified into memory */
 /* First we read data from frame buffer and then mask it with complementary mask */
         dp++;  /* Incrementing data pointer */
-        bp +=
-                inc; /* Incrementing buffer pointer by steo-size i.e 3 */
+        bp += inc; /* Incrementing buffer pointer by steo-size i.e 3 */
     }
 }
 
@@ -177,5 +172,4 @@ int main(int argc, char **argv) {
     printf("%u\n", map_base);
 
     exit((err_flag) ? 1 : 0);
-
 }
